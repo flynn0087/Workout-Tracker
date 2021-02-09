@@ -36,7 +36,12 @@ const workoutSchema = new Schema({
             type: Number
         }
     }]
-});    
+},    
+    {
+        toObject: { virtuals: true },
+        toJSON: { virtuals: true },
+    }
+);    
 
 const Workout = mongoose.model("Workout", workoutSchema);
 //this exports it to the greater models file for exportation
