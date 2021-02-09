@@ -1,4 +1,5 @@
 //dependencies for the models
+const e = require("express");
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
@@ -41,8 +42,18 @@ const workoutSchema = new Schema({
         toObject: { virtuals: true },
         toJSON: { virtuals: true },
     }
-);    
+);   
 
+//this section uses the virtual data to generate a total duration
+workoutSchema.virtual("totalDuration").get(function() {
+    let totalDuration = 0;
+    this.exercises.forEach((el) => {
+        totalDuration += el.duration;
+    });
+    return totalDuration;
+});
+
+//this creates Workout as a model for exporation
 const Workout = mongoose.model("Workout", workoutSchema);
 //this exports it to the greater models file for exportation
 module.exports = Workout;
