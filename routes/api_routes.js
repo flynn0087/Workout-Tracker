@@ -1,6 +1,8 @@
+//dependencies needed 
 const router = require("express").Router();
 const db = require("../models");
 
+//route to add a workout
 router.post("/api/workouts", (req, res) => {
     db.Workout.create(req.body)
         .then((workout) => {
@@ -11,6 +13,7 @@ router.post("/api/workouts", (req, res) => {
         });
 });
 
+//route to read a workout
 router.get("/api/workouts", (req, res) => {
     db.Workout.find({})
         .sort({ date: -1 })
@@ -22,6 +25,7 @@ router.get("/api/workouts", (req, res) => {
         });
 });
 
+//route to read a range of workouts
 router.get("/api/workouts/range", (req, res) => {
     db.Workout.find({})
         .sort({ date: -1 })
@@ -33,6 +37,7 @@ router.get("/api/workouts/range", (req, res) => {
         });
 });
 
+//route to update a workout
 router.put("/api/workouts/:id", async (req, res) =>{
     const id = req.params.id;
     const body = req.body;
@@ -52,4 +57,5 @@ router.put("/api/workouts/:id", async (req, res) =>{
     });
 });
 
+//exportation to make usable by other files
 module.exports = router;
