@@ -1,5 +1,4 @@
 //dependencies for the models
-const e = require("express");
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 

@@ -1,7 +1,7 @@
 //these are the dependencies needed
 const express = require("express");
 const mongoose = require("mongoose");
-require('dotenv/config');
+//require('dotenv/config');
 
 //this sets the port when 
 const PORT = process.env.PORT || 3000;
@@ -14,12 +14,14 @@ app.use(express.static("public"));
 
 //this section connects to the routes created
 app.use(require("./routes/html_routes.js"));
-app.use(require("./routes/api_routes.js"))
+app.use(require("./routes/api_routes.js"));
 
 //this section connects to the mongoose database
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
     useNewUrlParser: true,
-    useFindAndModify: false,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false
 });
 
 //this starts the server listening
